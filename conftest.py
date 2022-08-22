@@ -9,7 +9,7 @@ def pytest_addoption(parser):
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default="en",
                      help="Choose language: ru, en, es, ... etc")  # +++
-    parser.addoption('--headless', action='store', default='true',
+    parser.addoption('--headless', action='store', default='false',
                      help="Open a browser invisible, without GUI is used by default")
 
 @pytest.fixture(scope="function")
