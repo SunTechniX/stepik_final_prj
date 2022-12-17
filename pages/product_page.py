@@ -13,7 +13,6 @@ class ProductPage(BasePage):
         self.solve_quiz_and_get_code_ff()   # Запустить решение и получение кода
         print('sleep 2 sec after solve code')
         time.sleep(2)
-        # self.check_product_in_basket()
         self.check_product_name_in_basket()
         self.check_product_price_in_basket()
 
@@ -27,8 +26,6 @@ class ProductPage(BasePage):
         assert WebDriverWait(self.browser, 5).until(
             EC.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE)
         ), "Product not added to Basket!"
-        #div_msg = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
-        #assert 'has been added' in div_msg.text, "No msg about added to Basket!"
 
     def check_product_name_in_basket(self):
         name_prod = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)

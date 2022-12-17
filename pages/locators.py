@@ -1,13 +1,10 @@
 from selenium.webdriver.common.by import By
 
 class BasePageLocators():
-    # bad BASKET_VIEW = (By.CSS_SELECTOR, "div.basket-mini > a.btn")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
     BASKET_VIEW = (By.CSS_SELECTOR, "div.basket-mini a.btn")
     BASKET_SUMMARY = (By.CSS_SELECTOR, "form.basket_summary")
     BASKET_EMPTY = (By.CSS_SELECTOR, "div#content_inner > p")
-    #BASKET_EMPTY = (By.CSS_SELECTOR, "#content_inner > p")
-    #(By.XPATH, "//p[contains(text(), 'empty')]")
-    #p: contains("empty")
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
 
@@ -15,6 +12,11 @@ class LoginPageLocators():
     LOGIN_URL = (By.CSS_SELECTOR, "#login_link")
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+    REGISTER_EMAIL = (By.CSS_SELECTOR,"input#id_registration-email")
+    REGISTER_PASS1 = (By.CSS_SELECTOR, "input#id_registration-password1")
+    REGISTER_PASS2 = (By.CSS_SELECTOR, "input#id_registration-password2")
+    REGISTER_BUTTON = (By.CSS_SELECTOR, 'button[name="registration_submit"]')
+    REGISTER_SUCCESS_MSG = (By.CSS_SELECTOR,"div.alert-success")
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")

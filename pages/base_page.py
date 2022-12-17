@@ -17,6 +17,7 @@ class BasePage():
         self.browser.implicitly_wait(timeout)
 
     def open(self):
+        print('==>> open self.url')
         self.browser.get(self.url)
 
     def solve_quiz_and_get_code(self):
@@ -64,15 +65,25 @@ class BasePage():
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
+    def go_to_logout(self):
+        link = self.browser.find_element(*BasePageLocators.LOGOUT_LINK)
+        link.click()
+
     def go_to_basket_page(self):
         link = self.browser.find_element(*BasePageLocators.BASKET_VIEW)
         link.click()
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+            " probably unauthorised user"
+
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
+    def should_be_logout_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGOUT_LINK), "Logout link is not presented"
+
     def is_element_present(self, how, what):
-        print('NO WAIT!')
         try:
             self.browser.find_element(how, what)
         except (NoSuchElementException):
@@ -81,9 +92,7 @@ class BasePage():
         return True
 
     def is_element_present_v2(self, how, what, timeout=4):
-        print('WAIT 4 seconds')
         try:
-            #self.browser.find_element(how, what)
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
@@ -93,8 +102,7 @@ class BasePage():
         return True
 
     def is_not_element_present(self, how, what, timeout=4):
-        print('WAIT 4 seconds for TRUE')
-        try: # упадет, как только увидит искомый элемент. Не появился: успех, тест зеленый.
+        try:  # упадет, как только увидит искомый элемент. Не появился: успех, тест зеленый.
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return True
